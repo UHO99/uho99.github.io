@@ -1,3 +1,931 @@
-<html>
-  
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>엄주호 — Backend Engineer</title>
+<meta name="description" content="신입 백엔드 개발자 엄주호의 포트폴리오">
+
+<script>
+  (function () {
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --serif-mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --sans: 'IBM Plex Sans KR', -apple-system, sans-serif;
+    --content-width: 720px;
+    --radius: 3px;
+  }
+
+  [data-theme="light"] {
+    --bg: #EDEEEA;
+    --bg-elevated: #E3E4DD;
+    --bg-card: #F4F4F0;
+    --text: #1B1F1D;
+    --text-muted: #5C635D;
+    --text-faint: #8B928C;
+    --accent: #2B6E5F;
+    --accent-strong: #1E4F44;
+    --accent-soft: rgba(43, 110, 95, 0.10);
+    --border: rgba(27, 31, 29, 0.12);
+    --border-strong: rgba(27, 31, 29, 0.22);
+    --shadow: 0 1px 2px rgba(27,31,29,0.06);
+  }
+
+  [data-theme="dark"] {
+    --bg: #14181A;
+    --bg-elevated: #1A1F21;
+    --bg-card: #1D2325;
+    --text: #E7E5DE;
+    --text-muted: #9BA39D;
+    --text-faint: #656E68;
+    --accent: #6FBFA8;
+    --accent-strong: #94D4C0;
+    --accent-soft: rgba(111, 191, 168, 0.12);
+    --border: rgba(231, 229, 222, 0.10);
+    --border-strong: rgba(231, 229, 222, 0.20);
+    --shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.35s ease, color 0.35s ease;
+  }
+
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* ---------- scroll progress ---------- */
+  #progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    width: 0%;
+    background: var(--accent);
+    z-index: 200;
+    transition: width 0.1s linear;
+  }
+
+  /* ---------- layout shell ---------- */
+  .wrap {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  section {
+    padding: 96px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  section:last-of-type { border-bottom: none; }
+
+  .eyebrow {
+    font-family: var(--serif-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin: 0 0 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before {
+    content: "//";
+    color: var(--text-faint);
+  }
+
+  h1, h2, h3 { margin: 0; font-weight: 600; }
+
+  .fade {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---------- hero ---------- */
+  .hero {
+    padding-top: 128px;
+    padding-bottom: 88px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-role {
+    font-family: var(--serif-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.16em;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-size: 46px;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+  .hero h1 .accent { color: var(--accent); }
+
+  .hero-lead {
+    margin-top: 22px;
+    max-width: 540px;
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.85;
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 28px;
+    padding: 7px 14px 7px 11px;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    font-family: var(--serif-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+
+  /* ---------- experience bullet list ---------- */
+  .tl-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .tl-list li {
+    position: relative;
+    padding-left: 16px;
+    color: var(--text-muted);
+    font-size: 14.5px;
+    line-height: 1.8;
+  }
+  .tl-list li + li { margin-top: 6px; }
+  .tl-list li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: var(--text-faint);
+  }
+
+  /* ---------- experience ---------- */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 148px 1fr;
+    gap: 24px;
+    padding: 26px 0;
+    border-top: 1px solid var(--border);
+  }
+  .tl-item:first-child { border-top: none; }
+  .tl-date {
+    font-family: var(--serif-mono);
+    font-size: 12.5px;
+    color: var(--text-faint);
+    padding-top: 3px;
+  }
+  .tl-title {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .tl-desc {
+    color: var(--text-muted);
+    font-size: 14.5px;
+    line-height: 1.8;
+  }
+
+  /* ---------- skills ---------- */
+  .skill-groups {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1.1fr;
+    gap: 32px;
+  }
+  .skill-label {
+    font-size: 13px;
+    color: var(--text-faint);
+    margin-bottom: 16px;
+    font-family: var(--serif-mono);
+  }
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--serif-mono);
+    font-size: 13px;
+    padding: 6px 12px 6px 6px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    color: var(--text);
+    background: var(--bg-card);
+  }
+  .chip-icon {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-elevated);
+    color: var(--text-faint);
+    font-size: 8.5px;
+    letter-spacing: 0;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .chip-icon img {
+    width: 13px;
+    height: 13px;
+    object-fit: contain;
+  }
+  .chip-icon.img-failed img { display: none; }
+  .chip-icon.img-failed::before { content: attr(data-fallback); }
+
+  /* ---------- portfolio ---------- */
+  .proj-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .proj-card {
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+    overflow: hidden;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .proj-thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 8;
+    background: linear-gradient(135deg, var(--accent-soft), var(--bg-elevated));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .proj-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .proj-thumb .thumb-fallback {
+    font-family: var(--serif-mono);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    color: var(--text-faint);
+    display: none;
+  }
+  .proj-thumb.img-failed img { display: none; }
+  .proj-thumb.img-failed .thumb-fallback { display: block; }
+  .proj-body { padding: 22px 26px 26px; }
+  .proj-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .proj-tag {
+    font-family: var(--serif-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .proj-title {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .proj-title .arrow {
+    font-family: var(--serif-mono);
+    font-size: 15px;
+    color: var(--text-faint);
+    transition: transform 0.25s ease;
+  }
+  .proj-card:hover .arrow {
+    transform: translate(3px, -3px);
+    color: var(--accent);
+  }
+  .proj-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  /* ---------- awards / certs ---------- */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .list-plain { list-style: none; margin: 0; padding: 0; }
+  .list-plain li {
+    padding: 14px 0;
+    border-top: 1px solid var(--border);
+    font-size: 14.5px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--text);
+  }
+  .list-plain li:first-child { border-top: none; }
+  .list-plain .date {
+    font-family: var(--serif-mono);
+    font-size: 12.5px;
+    color: var(--text-faint);
+    white-space: nowrap;
+  }
+
+  /* ---------- contact ---------- */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .contact-item {
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+  }
+  .contact-item:hover { border-color: var(--accent); }
+  .contact-label {
+    font-family: var(--serif-mono);
+    font-size: 11.5px;
+    color: var(--text-faint);
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .contact-value {
+    font-size: 15px;
+    font-weight: 500;
+    word-break: break-all;
+  }
+
+  footer {
+    padding: 48px 0 64px;
+    text-align: center;
+  }
+  footer p {
+    margin: 0;
+    font-size: 12.5px;
+    color: var(--text-faint);
+    line-height: 1.9;
+  }
+
+  /* ---------- theme toggle ---------- */
+  #theme-toggle {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    z-index: 150;
+    transition: border-color 0.25s ease, transform 0.15s ease;
+  }
+  #theme-toggle:hover {
+    border-color: var(--accent);
+  }
+  #theme-toggle:active { transform: scale(0.94); }
+  #theme-toggle svg {
+    width: 19px; height: 19px;
+    stroke: var(--text);
+  }
+  #theme-toggle .icon-moon { display: none; }
+  [data-theme="dark"] #theme-toggle .icon-sun { display: none; }
+  [data-theme="dark"] #theme-toggle .icon-moon { display: block; }
+
+  /* ---------- hamburger menu ---------- */
+  #menu-toggle {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    z-index: 220;
+    transition: border-color 0.25s ease, transform 0.15s ease;
+  }
+  #menu-toggle:hover { border-color: var(--accent); }
+  #menu-toggle:active { transform: scale(0.94); }
+  #menu-toggle .bar {
+    position: absolute;
+    width: 18px;
+    height: 1.6px;
+    background: var(--text);
+    transition: transform 0.3s ease, opacity 0.3s ease, top 0.3s ease;
+  }
+  #menu-toggle .bar:nth-child(1) { top: 18px; }
+  #menu-toggle .bar:nth-child(2) { top: 24px; }
+  #menu-toggle .bar:nth-child(3) { top: 30px; }
+  #menu-toggle.open .bar:nth-child(1) { top: 24px; transform: rotate(45deg); }
+  #menu-toggle.open .bar:nth-child(2) { opacity: 0; }
+  #menu-toggle.open .bar:nth-child(3) { top: 24px; transform: rotate(-45deg); }
+
+  .drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 12, 11, 0.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 190;
+  }
+  .drawer-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: min(320px, 84vw);
+    background: var(--bg-elevated);
+    border-left: 1px solid var(--border);
+    z-index: 210;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .drawer.open { transform: translateX(0); }
+
+  .drawer-photo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: linear-gradient(160deg, var(--accent-soft), var(--bg-card));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .drawer-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .drawer-photo .photo-fallback {
+    font-family: var(--serif-mono);
+    font-size: 34px;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    display: none;
+  }
+  .drawer-photo.img-failed img { display: none; }
+  .drawer-photo.img-failed .photo-fallback { display: block; }
+
+  .drawer-id {
+    padding: 20px 24px 8px;
+  }
+  .drawer-id .name {
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .drawer-id .role {
+    margin-top: 4px;
+    font-family: var(--serif-mono);
+    font-size: 12px;
+    color: var(--text-faint);
+    letter-spacing: 0.06em;
+  }
+
+  .drawer-nav {
+    margin-top: auto;
+    border-top: 1px solid var(--border);
+  }
+  .drawer-nav a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    font-size: 14.5px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .drawer-nav a:first-child { border-top: none; }
+  .drawer-nav a:hover {
+    color: var(--text);
+    background: var(--accent-soft);
+  }
+  .drawer-nav a .idx {
+    font-family: var(--serif-mono);
+    font-size: 11.5px;
+    color: var(--text-faint);
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 32px; }
+    section { padding: 64px 0; }
+    .tl-item { grid-template-columns: 1fr; gap: 6px; }
+    .skill-groups, .two-col, .contact-grid { grid-template-columns: 1fr; }
+    .wrap { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<div class="wrap">
+
+  <!-- INTRO -->
+  <section class="hero" id="intro">
+    <div class="hero-role">BACKEND ENGINEER · SEEKING FIRST ROLE</div>
+    <h1 class="fade">안녕하세요,<br>신입 백엔드 개발자 <span class="accent">엄주호</span>입니다.</h1>
+    <p class="hero-lead fade">
+      꾸준히 공부하고 발전하는 과정을 좋아합니다. 새로운 기술을 적용하거나 로직을 바꿔
+      성능을 조금씩 끌어올리는 순간에서 재미를 느낍니다. 지금은 그 즐거움을 실무로
+      옮길 첫 자리를 찾고 있습니다.
+    </p>
+    <div class="status-pill fade"><span class="status-dot"></span>현재 백엔드 개발자로 구직 중</div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="eyebrow fade">EXPERIENCE</p>
+    <div class="timeline">
+
+      <div class="tl-item fade">
+        <div class="tl-date">2026.04.06 – 2026.10.28</div>
+        <div>
+          <div class="tl-title">[LG U+] 유레카 SW 교육과정 4기 — 백엔드 과정</div>
+          <div class="tl-desc">
+            Spring Boot, Servlet의 라이프사이클, 원천 기술에서 JPA에 이르기까지
+            더 본질적으로 학습하고 싶어 입과했습니다. 다양한 프로젝트를 진행하며
+            즐겁게 개발했습니다.
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item fade">
+        <div class="tl-date">2024.02 – 2024.10</div>
+        <div>
+          <div class="tl-title">株式会社テクノプロ・IT <span style="color:var(--text-faint); font-weight:400;">— 일본 해외 경험</span></div>
+          <ul class="tl-list">
+            <li>LMS(학습관리시스템) SaaS 관리자 페이지를 통한 사내 교육과정 등록 및 운영 업무 담당</li>
+            <li>자회사 요청 기반 신입사원 연수과정 등 온라인 강의 등록 및 임직원 수강 권한 부여</li>
+            <li>Excel을 활용한 강의 등록·수강 현황 데이터 취합 및 월별 통계 그래프 작성, 정기 보고</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="eyebrow fade">SKILLS</p>
+    <div class="skill-groups fade">
+      <div>
+        <div class="skill-label">언어 &amp; 프레임워크</div>
+        <div class="chip-row">
+          <span class="chip"><span class="chip-icon" data-fallback="Ja"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="" loading="lazy"></span>Java</span>
+          <span class="chip"><span class="chip-icon" data-fallback="Sp"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="" loading="lazy"></span>Spring</span>
+          <span class="chip"><span class="chip-icon mono">JP</span>JPA</span>
+          <span class="chip"><span class="chip-icon" data-fallback="Go"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" alt="" loading="lazy"></span>GoLang</span>
+          <span class="chip"><span class="chip-icon mono">Gn</span>GoGin</span>
+          <span class="chip"><span class="chip-icon mono">Sq</span>SQLC</span>
+          <span class="chip"><span class="chip-icon" data-fallback="Js"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" loading="lazy"></span>JavaScript</span>
+          <span class="chip"><span class="chip-icon" data-fallback="C+"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="" loading="lazy"></span>C/C++</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-label">Database</div>
+        <div class="chip-row">
+          <span class="chip"><span class="chip-icon" data-fallback="My"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="" loading="lazy"></span>MySQL</span>
+          <span class="chip"><span class="chip-icon" data-fallback="Pg"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="" loading="lazy"></span>PostgreSQL</span>
+          <span class="chip"><span class="chip-icon" data-fallback="Rd"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="" loading="lazy"></span>Redis</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-label">개발 도구</div>
+        <div class="chip-row">
+          <span class="chip"><span class="chip-icon" data-fallback="Vs"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="" loading="lazy"></span>VSCode</span>
+          <span class="chip"><span class="chip-icon" data-fallback="IJ"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" alt="" loading="lazy"></span>IntelliJ</span>
+          <span class="chip"><span class="chip-icon" data-fallback="Ec"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eclipse/eclipse-original.svg" alt="" loading="lazy"></span>Spring Tool Suite</span>
+          <span class="chip"><span class="chip-icon" data-fallback="Gh"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="" loading="lazy"></span>GitHub</span>
+          <span class="chip"><span class="chip-icon" data-fallback="Gt"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="" loading="lazy"></span>Git</span>
+          <span class="chip"><span class="chip-icon" data-fallback="Dk"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="" loading="lazy"></span>Docker</span>
+          <span class="chip"><span class="chip-icon" data-fallback="Pm"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="" loading="lazy"></span>Postman</span>
+          <span class="chip"><span class="chip-icon" data-fallback="Aws"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="" loading="lazy"></span>AWS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="work">
+    <p class="eyebrow fade">WORK</p>
+    <div class="proj-list fade">
+
+      <a class="proj-card" href="https://github.com/tunkcalb/donggam" target="_blank" rel="noopener">
+        <div class="proj-thumb">
+          <img src="images/donggam.jpg" alt="거리 기반 SNS 동감 스크린샷" loading="lazy">
+          <span class="thumb-fallback">DONGGAM</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tag">SSAFY 자율 프로젝트</div>
+          <div class="proj-title">거리 기반 SNS, 동감 <span class="arrow">↗</span></div>
+          <div class="proj-desc">
+            시간과 공간을 기반으로 다양한 콘텐츠에 참여하고, 자신의 기록을 공유할 수 있는 서비스입니다.
+          </div>
+        </div>
+      </a>
+
+      <!--
+      <a class="proj-card" href="https://github.com/tunkcalb/finball" target="_blank" rel="noopener">
+        <div class="proj-thumb">
+          <img src="images/finball.jpg" alt="자산 시각화 인터넷 전문은행 핀볼 스크린샷" loading="lazy">
+          <span class="thumb-fallback">FINBALL</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tag">SSAFY 특화 프로젝트</div>
+          <div class="proj-title">자산 시각화 인터넷 전문은행, 핀볼 <span class="arrow">↗</span></div>
+          <div class="proj-desc">
+            공을 굴려 계좌 잔액을 확인하고, 재미있는 방식으로 정산할 수 있는 핀볼 정산 기능을 제공합니다.
+          </div>
+        </div>
+      </a>
+
+      <a class="proj-card" href="https://github.com/tunkcalb/shinhan-solup" target="_blank" rel="noopener">
+        <div class="proj-thumb">
+          <img src="images/solup.jpg" alt="소상공인 손익 관리 솔루션 스크린샷" loading="lazy">
+          <span class="thumb-fallback">SOL-UP</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tag">신한은행 SSAFY 해커톤</div>
+          <div class="proj-title">소상공인 손익 관리 솔루션 <span class="arrow">↗</span></div>
+          <div class="proj-desc">
+            고정비, 변동비, 예비비와 카드·현금 매출을 계좌 분할 없이 한 곳에서 관리합니다.
+          </div>
+        </div>
+      </a>
+
+      <a class="proj-card" href="https://github.com/tunkcalb/fishmeter/tree/main" target="_blank" rel="noopener">
+        <div class="proj-thumb">
+          <img src="images/fishmeter.jpg" alt="물고기 갤러리 및 낚시 정보 공유 서비스 피시미터 스크린샷" loading="lazy">
+          <span class="thumb-fallback">FISHMETER</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tag">SSAFY 공통 프로젝트</div>
+          <div class="proj-title">물고기 갤러리 &amp; 낚시 정보 공유, 피시미터 <span class="arrow">↗</span></div>
+          <div class="proj-desc">
+            사진 한 장으로 어종, 길이, 촬영 날짜와 위치 등 다양한 정보를 알려줍니다.
+          </div>
+        </div>
+      </a>
+      -->
+
+    </div>
+  </section>
+
+  <!-- AWARDS & CERTS -->
+  <section id="awards">
+    <p class="eyebrow fade">AWARDS &amp; CERTIFICATIONS</p>
+    <div class="two-col fade">
+      <!--
+      <div>
+        <div class="skill-label">Awards</div>
+        <ul class="list-plain">
+          <li><span>SSAFY 자율 프로젝트 우수상</span><span class="date">3등</span></li>
+        </ul>
+      </div>
+      -->
+      <div>
+        <div class="skill-label">Certification</div>
+        <ul class="list-plain">
+          <li><span>JLPT 1급</span><span class="date">153점 · 2023.12</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="eyebrow fade">CONTACT</p>
+    <div class="contact-grid fade">
+      <a class="contact-item" href="tel:01099843865">
+        <div class="contact-label">PHONE</div>
+        <div class="contact-value">010-9984-3865</div>
+      </a>
+      <a class="contact-item" href="mailto:uh787355@gmail.com">
+        <div class="contact-label">EMAIL</div>
+        <div class="contact-value">uh787355@gmail.com</div>
+      </a>
+      <a class="contact-item" href="https://github.com/UHO99" target="_blank" rel="noopener">
+        <div class="contact-label">GITHUB</div>
+        <div class="contact-value">github.com/UHO99</div>
+      </a>
+      <a class="contact-item" href="https://umjuho9984.tistory.com/" target="_blank" rel="noopener">
+        <div class="contact-label">BLOG</div>
+        <div class="contact-value">umjuho9984.tistory.com</div>
+      </a>
+    </div>
+  </section>
+
+
+  <footer>
+    <p>© Untitled. All rights reserved.<br>
+    이 사이트는 포트폴리오 용도로 제작되었으며 상업적 용도로 사용하지 않습니다.</p>
+  </footer>
+
+</div>
+
+<button id="menu-toggle" aria-label="메뉴 열기" aria-expanded="false">
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
+</button>
+
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<nav class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-photo" id="drawerPhoto">
+    <img src="images/profile.jpg" alt="엄주호 프로필 사진" loading="lazy">
+    <span class="photo-fallback">JH</span>
+  </div>
+  <div class="drawer-id">
+    <div class="name">엄주호</div>
+    <div class="role">BACKEND ENGINEER</div>
+  </div>
+  <div class="drawer-nav">
+    <a href="#intro" data-close><span>Intro</span><span class="idx">01</span></a>
+    <a href="#experience" data-close><span>Experience</span><span class="idx">02</span></a>
+    <a href="#skills" data-close><span>Skills</span><span class="idx">03</span></a>
+    <a href="#work" data-close><span>Work</span><span class="idx">04</span></a>
+    <a href="#awards" data-close><span>Awards</span><span class="idx">05</span></a>
+    <a href="#contact" data-close><span>Contact</span><span class="idx">06</span></a>
+  </div>
+</nav>
+
+<button id="theme-toggle" aria-label="다크/라이트 모드 전환">
+  <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4.2"></circle>
+    <path d="M12 2.5v2.4M12 19.1v2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"></path>
+  </svg>
+  <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20.5 14.5a8.5 8.5 0 1 1-9-13 7 7 0 0 0 9 13z"></path>
+  </svg>
+</button>
+
+<script>
+  // theme toggle
+  var root = document.documentElement;
+  var toggleBtn = document.getElementById('theme-toggle');
+  toggleBtn.addEventListener('click', function () {
+    var current = root.getAttribute('data-theme');
+    root.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+  });
+
+  // scroll progress bar
+  var progressEl = document.getElementById('progress');
+  function updateProgress() {
+    var h = document.documentElement;
+    var scrollTop = h.scrollTop || document.body.scrollTop;
+    var scrollHeight = (h.scrollHeight || document.body.scrollHeight) - h.clientHeight;
+    var pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    progressEl.style.width = pct + '%';
+  }
+  document.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  // scroll reveal
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fadeEls = document.querySelectorAll('.fade');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    fadeEls.forEach(function (el) { el.classList.add('in-view'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    fadeEls.forEach(function (el) { io.observe(el); });
+  }
+
+  // hamburger drawer
+  var menuBtn = document.getElementById('menu-toggle');
+  var drawer = document.getElementById('drawer');
+  var overlay = document.getElementById('drawerOverlay');
+
+  function openDrawer() {
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    menuBtn.classList.add('open');
+    menuBtn.setAttribute('aria-expanded', 'true');
+    drawer.setAttribute('aria-hidden', 'false');
+  }
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    menuBtn.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    drawer.setAttribute('aria-hidden', 'true');
+  }
+  menuBtn.addEventListener('click', function () {
+    if (drawer.classList.contains('open')) { closeDrawer(); } else { openDrawer(); }
+  });
+  overlay.addEventListener('click', closeDrawer);
+  drawer.querySelectorAll('a[data-close]').forEach(function (a) {
+    a.addEventListener('click', closeDrawer);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeDrawer();
+  });
+
+  // image fallbacks: skill icons, project thumbnails, profile photo
+  document.querySelectorAll('.chip-icon img').forEach(function (img) {
+    img.addEventListener('error', function () {
+      img.parentElement.classList.add('img-failed');
+    });
+  });
+  document.querySelectorAll('.proj-thumb img, .drawer-photo img').forEach(function (img) {
+    img.addEventListener('error', function () {
+      img.parentElement.classList.add('img-failed');
+    });
+  });
+
+</script>
+
+</body>
 </html>
