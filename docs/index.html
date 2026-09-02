@@ -25,36 +25,43 @@
     --sans: 'IBM Plex Sans KR', -apple-system, sans-serif;
     --content-width: 720px;
     --radius: 3px;
+    --radius-lg: 18px;
   }
 
   [data-theme="light"] {
-    --bg: #EDEEEA;
-    --bg-elevated: #E3E4DD;
-    --bg-card: #F4F4F0;
-    --text: #1B1F1D;
-    --text-muted: #5C635D;
-    --text-faint: #8B928C;
-    --accent: #2B6E5F;
-    --accent-strong: #1E4F44;
-    --accent-soft: rgba(43, 110, 95, 0.10);
-    --border: rgba(27, 31, 29, 0.12);
-    --border-strong: rgba(27, 31, 29, 0.22);
-    --shadow: 0 1px 2px rgba(27,31,29,0.06);
+    --bg: #EEEDF3;
+    --bg-elevated: #E4E2EE;
+    --bg-card: #F7F6FB;
+    --text: #1C1B24;
+    --text-muted: #5E5C6E;
+    --text-faint: #8D8B9C;
+    --accent: #6C5CE0;
+    --accent-2: #9B7FF0;
+    --accent-strong: #4B3AB8;
+    --accent-soft: rgba(108, 92, 224, 0.10);
+    --accent-shadow: rgba(108, 92, 224, 0.22);
+    --border: rgba(28, 27, 36, 0.10);
+    --border-strong: rgba(28, 27, 36, 0.20);
+    --shadow: 0 1px 2px rgba(28,27,36,0.06);
+    --gradient: linear-gradient(135deg, var(--accent), var(--accent-2));
   }
 
   [data-theme="dark"] {
-    --bg: #14181A;
-    --bg-elevated: #1A1F21;
-    --bg-card: #1D2325;
-    --text: #E7E5DE;
-    --text-muted: #9BA39D;
-    --text-faint: #656E68;
-    --accent: #6FBFA8;
-    --accent-strong: #94D4C0;
-    --accent-soft: rgba(111, 191, 168, 0.12);
-    --border: rgba(231, 229, 222, 0.10);
-    --border-strong: rgba(231, 229, 222, 0.20);
-    --shadow: 0 1px 2px rgba(0,0,0,0.3);
+    --bg: #15131C;
+    --bg-elevated: #1C1927;
+    --bg-card: #201D2C;
+    --text: #E9E7F2;
+    --text-muted: #A7A3BB;
+    --text-faint: #6E6A85;
+    --accent: #A98CFF;
+    --accent-2: #7C6FEE;
+    --accent-strong: #C9B8FF;
+    --accent-soft: rgba(169, 140, 255, 0.14);
+    --accent-shadow: rgba(124, 111, 238, 0.30);
+    --border: rgba(233, 231, 242, 0.09);
+    --border-strong: rgba(233, 231, 242, 0.18);
+    --shadow: 0 1px 2px rgba(0,0,0,0.35);
+    --gradient: linear-gradient(135deg, var(--accent-2), var(--accent));
   }
 
   * { box-sizing: border-box; }
@@ -144,7 +151,13 @@
     padding-top: 128px;
     padding-bottom: 88px;
     border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 56px;
   }
+
+  .hero-copy { flex: 1 1 auto; min-width: 0; }
 
   .hero-role {
     font-family: var(--serif-mono);
@@ -186,6 +199,95 @@
     border-radius: 50%;
     background: var(--accent);
     box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+
+  /* ---------- profile card ---------- */
+  .profile-card {
+    flex: 0 0 236px;
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    box-shadow: 0 12px 28px -14px var(--accent-shadow);
+    overflow: hidden;
+  }
+  .profile-photo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: var(--gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .profile-photo .photo-fallback {
+    font-family: var(--serif-mono);
+    font-size: 30px;
+    letter-spacing: 0.04em;
+    color: #fff;
+    display: none;
+  }
+  .profile-photo.img-failed img { display: none; }
+  .profile-photo.img-failed .photo-fallback { display: block; }
+  .profile-body {
+    padding: 18px 20px 20px;
+  }
+  .profile-name {
+    font-size: 16.5px;
+    font-weight: 600;
+  }
+  .profile-role {
+    margin-top: 3px;
+    font-family: var(--serif-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.05em;
+    color: var(--text-faint);
+  }
+  .profile-stats {
+    display: flex;
+    gap: 14px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .profile-stats div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .profile-stats .num {
+    font-family: var(--serif-mono);
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .profile-stats .label {
+    font-size: 10.5px;
+    color: var(--text-faint);
+  }
+  .profile-cta {
+    display: block;
+    text-align: center;
+    margin-top: 16px;
+    padding: 9px 0;
+    border-radius: 999px;
+    background: var(--gradient);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    transition: opacity 0.2s ease;
+  }
+  .profile-cta:hover { opacity: 0.88; }
+
+  @media (max-width: 760px) {
+    .hero { flex-direction: column-reverse; gap: 32px; }
+    .profile-card { flex: none; width: 100%; max-width: 236px; }
   }
 
   /* ---------- experience bullet list ---------- */
@@ -298,10 +400,10 @@
   .proj-card {
     display: block;
     border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     background: var(--bg-card);
     overflow: hidden;
-    transition: border-color 0.25s ease, transform 0.25s ease;
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   }
   .proj-thumb {
     position: relative;
@@ -333,6 +435,7 @@
   .proj-card:hover {
     border-color: var(--accent);
     transform: translateY(-2px);
+    box-shadow: 0 16px 32px -18px var(--accent-shadow);
   }
   .proj-tag {
     font-family: var(--serif-mono);
@@ -382,14 +485,15 @@
   .proj-card--has-embed {
     display: block;
     border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     background: var(--bg-card);
     overflow: hidden;
-    transition: border-color 0.25s ease, transform 0.25s ease;
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   }
   .proj-card--has-embed:hover {
     border-color: var(--accent);
     transform: translateY(-2px);
+    box-shadow: 0 16px 32px -18px var(--accent-shadow);
   }
   .proj-card--has-embed .proj-body {
     display: block;
@@ -449,10 +553,15 @@
   .contact-item {
     padding: 20px;
     border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     background: var(--bg-card);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
   }
-  .contact-item:hover { border-color: var(--accent); }
+  .contact-item:hover {
+    border-color: var(--accent);
+    box-shadow: 0 14px 28px -16px var(--accent-shadow);
+    transform: translateY(-2px);
+  }
   .contact-label {
     font-family: var(--serif-mono);
     font-size: 11.5px;
@@ -656,13 +765,31 @@
 
   <!-- INTRO -->
   <section class="hero" id="intro">
-    <div class="hero-role">BACKEND ENGINEER · SEEKING FIRST ROLE</div>
-    <h1 class="fade">안녕하세요,<br>신입 백엔드 개발자 <span class="accent">엄주호</span>입니다.</h1>
-    <p class="hero-lead fade">
-      꾸준히 공부하고 발전하는 과정을 좋아합니다. 새로운 기술을 적용하거나 각종 발생할 수 있는 유저 시나리오에서
-      트러블 슈팅 혹은 프로세스 개선하는 순간에서 재미를 느낍니다.
-    </p>
-    <div class="status-pill fade"><span class="status-dot"></span>현재 백엔드 개발자로 구직 중</div>
+    <div class="hero-copy">
+      <div class="hero-role">BACKEND ENGINEER · SEEKING FIRST ROLE</div>
+      <h1 class="fade">안녕하세요,<br>신입 백엔드 개발자 <span class="accent">엄주호</span>입니다.</h1>
+      <p class="hero-lead fade">
+        꾸준히 공부하고 발전하는 과정을 좋아합니다. 새로운 기술을 적용하거나 각종 발생할 수 있는 유저 시나리오에서
+        트러블 슈팅 혹은 프로세스 개선하는 순간에서 재미를 느낍니다.
+      </p>
+      <div class="status-pill fade"><span class="status-dot"></span>현재 백엔드 개발자로 구직 중</div>
+    </div>
+    <div class="profile-card fade">
+      <div class="profile-photo" id="profilePhoto">
+        <img src="images/profile.jpg" alt="엄주호 프로필 사진" loading="lazy">
+        <span class="photo-fallback">JH</span>
+      </div>
+      <div class="profile-body">
+        <div class="profile-name">엄주호</div>
+        <div class="profile-role">BACKEND ENGINEER</div>
+        <div class="profile-stats">
+          <div><span class="num">N1</span><span class="label">JLPT</span></div>
+          <div><span class="num">5</span><span class="label">Projects</span></div>
+          <div><span class="num">UHO99</span><span class="label">GitHub</span></div>
+        </div>
+        <a class="profile-cta" href="mailto:uh787355@gmail.com">Contact</a>
+      </div>
+    </div>
   </section>
 
   <!-- EXPERIENCE -->
@@ -967,7 +1094,7 @@
       img.parentElement.classList.add('img-failed');
     });
   });
-  document.querySelectorAll('.proj-thumb img, .drawer-photo img').forEach(function (img) {
+  document.querySelectorAll('.proj-thumb img, .drawer-photo img, .profile-photo img').forEach(function (img) {
     img.addEventListener('error', function () {
       img.parentElement.classList.add('img-failed');
     });
