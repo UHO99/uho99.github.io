@@ -365,6 +365,44 @@
     line-height: 1.8;
   }
 
+  /* ---------- portfolio: embedded google slides thumbnail ---------- */
+  .proj-card--has-embed {
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+    overflow: hidden;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .proj-card--has-embed:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .proj-card--has-embed .proj-body {
+    display: block;
+  }
+
+  .proj-thumb--slides {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 8; /* 다른 썸네일과 비율 통일 */
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-elevated);
+  }
+  .proj-thumb--slides iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    pointer-events: none; /* 리스트 스크롤 우선 */
+  }
+  .proj-thumb--slides:hover iframe {
+    pointer-events: auto; /* 마우스 올렸을 때만 슬라이드 조작 가능 */
+  }
+
   /* ---------- awards / certs ---------- */
   .two-col {
     display: grid;
@@ -687,15 +725,23 @@
     <p class="eyebrow fade">WORK</p>
     <div class="proj-list fade">
 
-      <a class="proj-card" href="https://github.com/UHO99/HighFive" target="_blank" rel="noopener">
-        <div class="proj-body">
+      <div class="proj-card proj-card--has-embed">
+        <div class="proj-thumb proj-thumb--slides">
+          <iframe
+            src="https://docs.google.com/presentation/d/1TsDYXocsudxTPH_4KhtSYZI3adt3Cn2Fass2M7D7qiw/embed?start=false&loop=false&delayms=3000"
+            frameborder="0"
+            loading="lazy"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <a class="proj-body" href="https://github.com/UHO99/HighFive" target="_blank" rel="noopener">
           <div class="proj-tag">LG U+ 종합 프로젝트</div>
           <div class="proj-title">HighFive <span class="arrow">↗</span></div>
           <div class="proj-desc">
-            대규모 쿠폰 발급 시스템으로 다수의 인원을 Redis Lua Script로 원자적 동시 발급 및 Redis Stream <-> DB로 정합성 동기화 및 검증을 진행하였습니다.
+            대규모 쿠폰 발급 시스템으로 다수의 인원을 Redis Lua Script로 원자적 동시 발급 및 Redis Stream &lt;-&gt; DB로 정합성 동기화 및 검증을 진행하였습니다.
           </div>
-        </div>
-      </a>
+        </a>
+      </div>
 
       <a class="proj-card" href="https://github.com/rmsckd1640/study-room-mate" target="_blank" rel="noopener">
         <div class="proj-body">
