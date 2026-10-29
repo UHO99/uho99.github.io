@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>엄주호 포트폴리오</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --text: #1C1B24; --muted: #5E5C6E; --faint: #8D8B9C;
+    --accent: #6C5CE0; --accent-strong: #4B3AB8; --soft: #F1EFFC; --line: #E2E0EA;
+    --mono: 'IBM Plex Mono', Consolas, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'IBM Plex Sans KR', 'Malgun Gothic', sans-serif; color: var(--text); font-size: 10pt; line-height: 1.6; background: #fff; }
+  .page { width: 210mm; height: 297mm; padding: 18mm 18mm 14mm; position: relative; page-break-after: always; overflow: hidden; }
+  .page:last-child { page-break-after: auto; }
+  .foot { position: absolute; bottom: 9mm; left: 18mm; right: 18mm; display: flex; justify-content: space-between; font: 500 7.5pt var(--mono); color: var(--faint); }
+  .eyebrow { font: 600 8pt var(--mono); letter-spacing: .12em; color: var(--accent); text-transform: uppercase; margin-bottom: 3mm; }
+  h1 { font-size: 30pt; line-height: 1.2; font-weight: 700; }
+  h1 em { font-style: normal; color: var(--accent); }
+  h2 { font-size: 17pt; font-weight: 700; margin-bottom: 2mm; }
+  h3 { font-size: 11pt; font-weight: 700; margin: 5mm 0 2mm; }
+  p.lead { color: var(--muted); font-size: 10.5pt; }
+  .sec { margin-top: 9mm; }
+  .bar { height: 1.2mm; width: 16mm; background: linear-gradient(90deg, var(--accent), #9B7FF0); border-radius: 1mm; margin: 6mm 0; }
+  .row { display: flex; gap: 6mm; }
+  .row > * { flex: 1; }
+  .card { border: 1px solid var(--line); border-radius: 3mm; padding: 4mm 5mm; }
+  .card.soft { background: var(--soft); border-color: transparent; }
+  .meta { font: 500 8pt var(--mono); color: var(--faint); }
+  ul { padding-left: 4.5mm; }
+  li { margin: .8mm 0; }
+  li::marker { color: var(--accent); }
+  .tags { display: flex; flex-wrap: wrap; gap: 1.6mm; margin-top: 2mm; }
+  .tag { font: 500 8pt var(--mono); padding: .6mm 2.4mm; border-radius: 10mm; background: var(--soft); color: var(--accent-strong); }
+  .kv { display: grid; grid-template-columns: 30mm 1fr; row-gap: 1.5mm; }
+  .kv b { color: var(--muted); font-weight: 600; }
+  .stat { text-align: center; }
+  .stat .n { font: 600 20pt var(--mono); color: var(--accent); line-height: 1.2; }
+  .stat .l { font-size: 8.5pt; color: var(--muted); }
+  .flow { display: flex; align-items: stretch; gap: 1.5mm; margin: 3mm 0; }
+  code { font: 500 8.5pt var(--mono); background: #fff; padding: 0 1mm; border-radius: 1mm; }
+  .flow div { flex: 1; text-align: center; font-size: 8.5pt; background: var(--soft); border-radius: 2mm; padding: 2mm 1mm; }
+  .flow div b { display: block; font-size: 9pt; color: var(--accent-strong); }
+  .flow div.hot { background: var(--accent); color: #fff; }
+  .flow div.hot b { color: #fff; }
+  table { width: 100%; border-collapse: collapse; font-size: 9pt; }
+  th, td { text-align: left; padding: 1.6mm 2mm; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font: 600 8pt var(--mono); color: var(--faint); }
+  td.num { font-family: var(--mono); }
+  .win { color: var(--accent-strong); font-weight: 700; }
+  a { color: var(--accent-strong); text-decoration: none; }
+  .proj { padding: 4mm 0; border-bottom: 1px solid var(--line); }
+  .proj:last-child { border-bottom: 0; }
+  .proj h3 { margin: 0 0 1mm; display: flex; justify-content: space-between; align-items: baseline; }
+</style>
+</head>
+<body>
+
+<!-- 1. 소개 -->
+<section class="page">
+  <p class="eyebrow">Backend Engineer · Portfolio</p>
+  <h1>안녕하세요,<br>신입 백엔드 개발자<br><em>엄주호</em>입니다.</h1>
+  <div class="bar"></div>
+  <p class="lead">꾸준히 공부하고 발전하는 과정을 좋아합니다. 새로운 기술을 적용하거나, 발생할 수 있는 다양한 유저 시나리오에서 트러블슈팅과 프로세스 개선을 해내는 순간에 재미를 느낍니다.</p>
+
+  <div class="row sec">
+    <div class="card stat"><div class="n">5+</div><div class="l">Projects</div></div>
+    <div class="card stat"><div class="n">N1</div><div class="l">JLPT 153점</div></div>
+    <div class="card stat"><div class="n">1/9</div><div class="l">LLM 비용 절감 (NewVent)</div></div>
+  </div>
+
+  <div class="sec">
+    <p class="eyebrow">Experience</p>
+    <div class="card">
+      <h3 style="margin-top:0">LG U+ 유레카 SW 교육과정 4기 - 백엔드</h3>
+      <p class="meta">2026.04.06 - 2026.10.28</p>
+      <p style="margin-top:1.5mm">Servlet 라이프사이클 같은 원천 기술부터 Spring Boot, JPA까지 더 본질적으로 학습하고 싶어 입과했습니다. NewVent, HighFive 등 여러 프로젝트를 진행했습니다.</p>
+    </div>
+    <div class="card" style="margin-top:3mm">
+      <h3 style="margin-top:0">株式会社テクノプロ・IT - 일본 해외 근무</h3>
+      <p class="meta">2024.02 - 2024.10</p>
+      <ul style="margin-top:1.5mm">
+        <li>LMS(학습관리시스템) SaaS 관리자 페이지로 사내 교육과정 등록·운영</li>
+        <li>자회사 요청 기반 신입사원 연수 등 온라인 강의 등록, 임직원 수강 권한 부여</li>
+        <li>Excel로 강의 등록·수강 현황 데이터 취합, 월별 통계 그래프 작성 및 정기 보고</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec">
+    <p class="eyebrow">Skills</p>
+    <div class="kv">
+      <b>Language</b><div class="tags"><span class="tag">Java</span><span class="tag">Go</span><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">C/C++</span></div>
+      <b>Framework</b><div class="tags"><span class="tag">Spring Boot</span><span class="tag">Spring Security</span><span class="tag">JPA</span><span class="tag">Gin</span><span class="tag">SQLC</span></div>
+      <b>Data</b><div class="tags"><span class="tag">PostgreSQL</span><span class="tag">pgvector</span><span class="tag">MySQL</span><span class="tag">Redis</span></div>
+      <b>AI · Infra</b><div class="tags"><span class="tag">AWS Bedrock</span><span class="tag">Ollama</span><span class="tag">AWS EC2</span><span class="tag">Docker</span><span class="tag">GitHub Actions</span></div>
+    </div>
+  </div>
+
+  <div class="foot"><span>엄주호 · uh787355@gmail.com · 010-9984-3865</span><span>github.com/UHO99 · uho99.github.io</span></div>
+</section>
+
+<!-- 2. NewVent 개요 + 내 역할 -->
+<section class="page">
+  <p class="eyebrow">Featured Project · 01</p>
+  <h2>NewVent</h2>
+  <p class="lead">요청문 한 줄로 이벤트 페이지를 만들고, 게시·참여·추첨까지 관리하는 LLM 기반 서비스</p>
+  <p class="meta" style="margin-top:1.5mm">LG U+ 유레카 · 8인 팀 · 백엔드 / LLM 모델 평가 담당 · <a href="https://github.com/New-Vent">github.com/New-Vent</a></p>
+
+  <div class="row sec" style="margin-top:6mm">
+    <div class="card soft">
+      <h3 style="margin-top:0">문제</h3>
+      <p>이벤트 페이지 한 장에도 기획 → 디자인 → 퍼블리싱을 매번 거칩니다. 문구 하나만 바꿔도 다시 디자이너와 개발자에게 돌아갑니다.</p>
+    </div>
+    <div class="card soft">
+      <h3 style="margin-top:0">해결</h3>
+      <p>"가을 응원 이벤트, 혜택은 쿠폰 3종"이라고 말하면 페이지가 생성되고, 말이나 클릭으로 고치고, 바로 게시합니다.</p>
+    </div>
+  </div>
+
+  <h3>핵심 원칙: LLM에 맡기되, 결과는 서버가 책임진다</h3>
+  <div class="flow">
+    <div><b>필터링</b>개인정보·모호함</div>
+    <div><b>RAG</b>유사 이벤트</div>
+    <div><b>프롬프트</b>레지스트리</div>
+    <div><b>LLM</b>gemma-3-27b</div>
+    <div class="hot"><b>정화</b>허용 태그만</div>
+    <div class="hot"><b>검증</b>값 보존·지어낸 값</div>
+    <div><b>재시도</b>최대 4회</div>
+  </div>
+
+  <h3>담당 업무</h3>
+  <table>
+    <tr><th style="width:30mm">영역</th><th>내용</th></tr>
+    <tr><td><b>LLM 출력 계약</b></td><td>블록·변형·팔레트를 레지스트리로 정의해 LLM의 디자인 선택 범위를 서버가 통제. 블록 4종 · 변형 191종 · 팔레트 143종 · 배치 13종 추가. 확장 항목은 요청문이 부를 때만 싣도록 PromptBuilder 정리</td></tr>
+    <tr><td><b>동작 배치기</b></td><td>카운트다운 등 동작을 LLM이 JSON으로 고르고 서버가 HTML에 심는 구조 설계. 정화 단계에서 동작 속성 보존 검사 추가</td></tr>
+    <tr><td><b>검증</b></td><td>지어낸 연도 검사, "500분께" 같은 높임말을 수량으로 판정하도록 값 검증 수정, 실패 코드를 enum 레지스트리로 통합</td></tr>
+    <tr><td><b>AI 수정</b></td><td>미리보기에서 고른 블록만 수정하도록 범위 제한, 선택 영역의 전체 팔레트 변경 차단</td></tr>
+    <tr><td><b>인증·인가</b></td><td>JWT + Refresh Token Rotation. 재발급 시 토큰 소진 → 계정 확인 → 이상 시 전체 폐기. 사용자/관리자 쿠키 분리, 공개 API 무작위 접근 수정, prod 위험 설정 기동 차단</td></tr>
+    <tr><td><b>프론트</b></td><td>관리자 생성·AI 수정·직접 수정·버전·게시 서버 연동, event.css 계층 분리, runtime.js</td></tr>
+  </table>
+
+  <h3>Tech</h3>
+  <div class="tags"><span class="tag">Java 21</span><span class="tag">Spring Boot 4.1</span><span class="tag">Spring Security</span><span class="tag">JPA · Flyway</span><span class="tag">jsoup</span><span class="tag">PostgreSQL 17 + pgvector</span><span class="tag">AWS Bedrock</span><span class="tag">EC2 · ECR · SSM</span><span class="tag">GitHub Actions OIDC</span><span class="tag">Vite · Vanilla JS</span></div>
+
+  <div class="foot"><span>엄주호 · Portfolio</span><span>02</span></div>
+</section>
+
+<!-- 3. 모델 벤치마크 -->
+<section class="page">
+  <p class="eyebrow">Featured Project · 01 - Deep Dive</p>
+  <h2>LLM 모델 선정 벤치마크</h2>
+  <p class="lead">"어떤 모델을 쓸까"를 감이 아니라 측정으로 정했습니다. 저장소 최다 기여자로 실험 설계와 수행을 주도했습니다.</p>
+  <p class="meta" style="margin-top:1.5mm"><a href="https://github.com/New-Vent/model-benchmark">github.com/New-Vent/model-benchmark</a> · Python · Ollama → AWS Bedrock · v1 ~ v11</p>
+
+  <div class="row sec" style="margin-top:6mm">
+    <div class="card stat"><div class="n">11</div><div class="l">실험 버전</div></div>
+    <div class="card stat"><div class="n">10,000+</div><div class="l">측정 행 (v1~v7)</div></div>
+    <div class="card stat"><div class="n">1/9</div><div class="l">동일 성능 대비 비용</div></div>
+  </div>
+
+  <h3>최종 비교 (Bedrock, v8~v9)</h3>
+  <table>
+    <tr><th>모델</th><th>생성·수정</th><th>라우터</th><th>실서비스 추정 비용</th></tr>
+    <tr><td class="win">gemma-3-27b ✓ 선정</td><td class="num">만점</td><td class="num win">24/24</td><td class="num win">1,119원</td></tr>
+    <tr><td>claude-haiku-4.5</td><td class="num">만점</td><td class="num">동점</td><td class="num">7,883원</td></tr>
+    <tr><td>gpt-oss-120b</td><td class="num">만점</td><td class="num">22/24</td><td>추론 토큰 8배 과금</td></tr>
+    <tr><td>qwen3-coder-30b</td><td class="num">만점</td><td class="num">16/24</td><td>-</td></tr>
+  </table>
+
+  <h3>내가 한 일</h3>
+  <ul>
+    <li><b>공통 엔진 모듈화</b> - 버전마다 흩어진 실행 스크립트를 base 엔진으로 통합. 프롬프트·채점기·케이스 중 하나라도 바뀌면 새 버전으로 분리해 결과가 섞이지 않게 관리</li>
+    <li><b>평가 기준 자체를 검증</b> - v1·v2 사이 평가 기준의 불공정을 발견해 기록하고 재측정</li>
+    <li><b>v6 단독 수행</b> - 문구 생성을 빼고 구조만 내게 하거나 삭제 연산 표현을 바꾸자 통과율 0%였던 축이 100%로. "모델을 바꾸는 것보다 요청 형태를 바꾸는 쪽이 효과가 컸다"</li>
+    <li><b>Bedrock 이전</b> - 로컬 → AWS Bedrock 이전 근거 정리, Bedrock 평가 파이프라인 구축</li>
+    <li><b>재현 가능한 기록</b> - 실패 유형 분석 엑셀, 문서 구조와 읽는 순서 정리, 로컬 LLM 톤앤매너 확인용 GUI</li>
+  </ul>
+
+  <h3>배운 것</h3>
+  <div class="row">
+    <div class="card soft"><b>채점기도 틀린다</b><br>채점 오류로 모델을 과소평가한 사례를 찾아 고쳤습니다.</div>
+    <div class="card soft"><b>정화 뒤를 재야 한다</b><br>모델 출력이 맞아도 정화가 망가뜨리면 제품은 깨집니다.</div>
+    <div class="card soft"><b>체급이 답은 아니다</b><br>로컬 7B가 30B보다 라우터를 잘했습니다.</div>
+  </div>
+
+  <div class="foot"><span>엄주호 · Portfolio</span><span>03</span></div>
+</section>
+
+<!-- 4. HighFive 개요 + 담당 -->
+<section class="page">
+  <p class="eyebrow">Featured Project · 02</p>
+  <h2>HighFive</h2>
+  <p class="lead">재고 1만 개 쿠폰에 10만 명이 동시에 몰려도 초과 발급 없이 빠르게 처리하는 선착순 쿠폰 발급 시스템</p>
+  <p class="meta" style="margin-top:1.5mm">LG U+ 유레카 종합 프로젝트 · 5인 팀 · 백엔드 (저장소 최다 커밋) · <a href="https://github.com/UHO99/HighFive">github.com/UHO99/HighFive</a></p>
+
+  <div class="row sec" style="margin-top:6mm">
+    <div class="card soft">
+      <h3 style="margin-top:0">문제</h3>
+      <p>DB 비관적 락은 정합성은 지키지만 10만 요청에 88.97초, p99 87초가 걸렸고 기본 힙(512MB)에서 OutOfMemoryError까지 났습니다. "원자적으로, 그리고 빠르게" 중 '빠르게'를 못 지켰습니다.</p>
+    </div>
+    <div class="card soft">
+      <h3 style="margin-top:0">해결</h3>
+      <p>재고 확인과 차감을 Redis Lua Script 하나로 묶어 락 없이 원자성을 보장하고, 결과는 Redis Stream으로 넘겨 DB에 비동기로 쌓은 뒤 배치로 정합성을 검증합니다.</p>
+    </div>
+  </div>
+
+  <h3>발급 파이프라인</h3>
+  <div class="flow">
+    <div><b>발급 요청</b>10만 동시</div>
+    <div class="hot"><b>Lua Script</b>확인+차감 원자</div>
+    <div><b>Redis Stream</b>발급 결과</div>
+    <div><b>Consumer</b>읽기 전용</div>
+    <div class="hot"><b>Writer</b>JDBC 배치 insert</div>
+    <div><b>MySQL</b>발급 이력</div>
+    <div class="hot"><b>검증 배치</b>60초 대조</div>
+  </div>
+
+  <h3>담당 업무</h3>
+  <table>
+    <tr><th style="width:30mm">영역</th><th>내용</th></tr>
+    <tr><td><b>Lua Script 제안</b></td><td>재고 확인과 차감을 따로 보내면 사이에 다른 요청이 끼어들어 별도 락이 필요하고 왕복도 늘어난다고 판단. 하나의 Lua Script로 묶자고 제안해 채택, 발급 파이프라인의 핵심이 됨</td></tr>
+    <tr><td><b>DB 적재 병목</b></td><td>Consumer가 블로킹 read와 DB 저장을 한 흐름에서 처리해 적재가 밀리던 문제를, 읽기와 쓰기를 분리하고 쓰기는 별도 스레드에서 모아 JDBC 배치 insert로 저장하도록 개선</td></tr>
+    <tr><td><b>동기화 배치</b></td><td>마감된 쿠폰의 실제 발급 이력 건수와 확정 수량을 맞추는 동기화 배치 구현</td></tr>
+    <tr><td><b>검증 배치</b></td><td>60초마다 마감 쿠폰을 재대조. 한 번 통과한 쿠폰은 대상에서 제외해 배치 부하가 쌓이지 않게 함</td></tr>
+    <tr><td><b>재고 복구</b></td><td>Redis 재고 키 유실 시 DB의 유효 발급 건수(취소·만료 제외)로 재고를 재계산해 복구</td></tr>
+  </table>
+
+  <h3>Tech</h3>
+  <div class="tags"><span class="tag">Java 21</span><span class="tag">Spring Boot 4.1</span><span class="tag">Spring Data JPA</span><span class="tag">MySQL · Flyway</span><span class="tag">Redis Lua</span><span class="tag">Redis Stream</span><span class="tag">Kafka (비교용)</span><span class="tag">k6</span><span class="tag">React 19 · TypeScript</span><span class="tag">Docker Compose</span></div>
+
+  <div class="foot"><span>엄주호 · Portfolio</span><span>04</span></div>
+</section>
+
+<!-- 5. HighFive 딥다이브 -->
+<section class="page">
+  <p class="eyebrow">Featured Project · 02 - Deep Dive</p>
+  <h2>동시성 제어 방식 비교와 정합성 검증</h2>
+  <p class="lead">같은 조건(가상 스레드 10만 개, 재고 1만 개)에서 방식을 바꿔 가며 측정하고, 수치로 설계를 결정했습니다.</p>
+
+  <div class="row sec" style="margin-top:6mm">
+    <div class="card stat"><div class="n">0.18s</div><div class="l">10만 요청 처리 (Lua 배치)</div></div>
+    <div class="card stat"><div class="n">58만/s</div><div class="l">초당 처리량</div></div>
+    <div class="card stat"><div class="n">0건</div><div class="l">초과 발급 (전 방식)</div></div>
+  </div>
+
+  <h3>방식별 비교</h3>
+  <table>
+    <tr><th>방식</th><th>처리 시간</th><th>비고</th></tr>
+    <tr><td>DB 비관적 락</td><td class="num">88.97초</td><td>p99 87초, 기본 힙 512MB에서 OOM</td></tr>
+    <tr><td>Lua Script (낱개)</td><td class="num">10.11초</td><td>비관적 락 대비 약 9배 빠름</td></tr>
+    <tr><td>Kafka 배치</td><td class="num">7.83초</td><td>-</td></tr>
+    <tr><td class="win">Lua Script (500건 배치) ✓</td><td class="num win">0.18초</td><td>3회 측정 0.15~0.21초, Kafka 대비 약 43배, 피크 힙 81MB로 최저</td></tr>
+  </table>
+  <p class="meta" style="margin-top:1.5mm">모든 방식에서 최종 재고 0 · 성공 발급 10,000건 · 초과 발급 0건 확인</p>
+
+  <h3>내가 한 일</h3>
+  <ul>
+    <li><b>Lua Script로 원자성 확보</b> - Redis는 Lua Script 하나를 실행하는 동안 다른 명령을 끼워 넣지 않으므로, 락 없이 엔진 수준에서 원자성이 보장되고 왕복은 한 번으로 줄어듭니다</li>
+    <li><b>읽기와 쓰기 분리</b> - Consumer는 Stream 읽기에만 집중하고, DB 쓰기는 별도 스레드가 모아서 배치로 처리해 DB 왕복 횟수를 건별 저장 대비 크게 줄였습니다</li>
+    <li><b>비동기 구조의 정합성</b> - Redis와 DB가 어긋날 수 있는 구조라 동기화 배치, 60초 검증 배치, 재고 키 유실 시 DB 기반 복구를 직접 만들었습니다</li>
+    <li><b>일부러 틀려 보기</b> - 발급 수량을 1건 조작한 테스트에서 검증 배치가 불일치를 바로 잡아내는 것을 확인했습니다</li>
+  </ul>
+
+  <h3>배운 것</h3>
+  <div class="row">
+    <div class="card soft"><b>Redis만으로는 부족하다</b><br>명령을 나눠 보내면 그 사이가 빈틈입니다. 원자성은 단위로 묶어야 생깁니다.</div>
+    <div class="card soft"><b>비동기는 검증과 한 세트</b><br>빠르게 쌓는 만큼 어긋남을 찾아 고치는 장치가 같이 있어야 합니다.</div>
+    <div class="card soft"><b>측정이 설계를 정한다</b><br>같은 조건으로 재야 방식끼리 비교가 됩니다.</div>
+  </div>
+
+  <div class="foot"><span>엄주호 · Portfolio</span><span>05</span></div>
+</section>
+
+<!-- 6. Proxy Gateway -->
+<section class="page">
+  <p class="eyebrow">Featured Project · 03</p>
+  <h2>Proxy Gateway</h2>
+  <p class="lead">리버스 프록시·로드밸런싱·오토스케일링·헬스체크의 내부 동작을 Nginx 없이 직접 구현</p>
+  <p class="meta" style="margin-top:1.5mm">개인 프로젝트 · 1인 · Go 게이트웨이 + Spring Boot 백엔드 · <a href="https://github.com/UHO99/Simple-Reverse-Proxy-Gateway">github.com/UHO99/Simple-Reverse-Proxy-Gateway</a></p>
+
+  <div class="row sec" style="margin-top:6mm">
+    <div class="card soft">
+      <h3 style="margin-top:0">문제</h3>
+      <p>처음 만든 게이트웨이는 포트 범위를 고정해 스캔했기 때문에 인스턴스 수가 정적이고, 부하가 늘면 사람이 직접 인스턴스를 늘려야 했습니다.</p>
+    </div>
+    <div class="card soft">
+      <h3 style="margin-top:0">해결</h3>
+      <p>Docker API로 실행 중인 컨테이너를 찾고, 활성 커넥션으로 부하를 재서 인스턴스를 자동으로 늘리고 줄입니다.</p>
+    </div>
+  </div>
+
+  <h3>동작 흐름</h3>
+  <div class="flow">
+    <div><b>Discovery</b>Docker API</div>
+    <div><b>헬스체크</b>goroutine 병렬</div>
+    <div class="hot"><b>라운드 로빈</b>atomic counter</div>
+    <div><b>부하 측정</b>ActiveConns</div>
+    <div class="hot"><b>평가</b>임계값·쿨다운</div>
+    <div><b>Scale</b>compose --scale</div>
+  </div>
+
+  <h3>구현 내용</h3>
+  <table>
+    <tr><th style="width:30mm">영역</th><th>내용</th></tr>
+    <tr><td><b>리버스 프록시</b></td><td>Gin + httputil.ReverseProxy로 모든 경로를 백엔드로 전달, X-Forwarded 헤더 설정</td></tr>
+    <tr><td><b>로드밸런서</b></td><td>RWMutex와 atomic counter로 라운드 로빈 선택. 헬스체크는 WaitGroup + goroutine으로 병렬 수행하고 Actuator 상태가 UP인 인스턴스만 풀에 등록</td></tr>
+    <tr><td><b>Discovery</b></td><td>포트 스캔 대신 compose 서비스 라벨로 실행 중인 컨테이너를 조회. 기존 Backend 객체를 재사용해 갱신 때마다 부하 카운터가 초기화되지 않게 함</td></tr>
+    <tr><td><b>오토스케일러</b></td><td>Discovery(10초)와 스케일 평가(15초) 주기를 분리. 평균 활성 커넥션이 임계값을 넘으면 1대씩 증감, 쿨다운 적용, 스케일 직후 재discovery 예약</td></tr>
+  </table>
+
+  <h3>트러블슈팅</h3>
+  <table>
+    <tr><th style="width:38mm">증상</th><th>원인과 해결</th></tr>
+    <tr><td>Scale In이 전혀 안 됨</td><td>오토스케일러 초기 인스턴스 수를 실제 조회 없이 최소값으로 고정해, 2대가 떠 있어도 "1대"로 인식. 시작 시 실제 healthy 인스턴스 수로 동기화하도록 수정</td></tr>
+    <tr><td>compose build 실패</td><td><code>build</code> 키에 이미지 태그를 넣은 실수. <code>build</code>(컨텍스트)와 <code>image</code>(태그)를 분리하고, 스케일 시 <code>--no-build</code>로 재빌드 차단</td></tr>  </table>
+  <div class="card soft" style="margin-top:3mm"><b>배운 것</b> - 상태를 들고 있는 로직은 실제 인프라 상태와 애플리케이션이 기억하는 상태가 어긋나는 순간 조용히 멈춥니다. 시작 시점에는 항상 실측값으로 동기화해야 합니다.</div>
+
+  <h3>Tech</h3>
+  <div class="tags"><span class="tag">Go</span><span class="tag">Gin</span><span class="tag">Docker Engine SDK</span><span class="tag">Spring Boot</span><span class="tag">Actuator</span><span class="tag">MySQL</span><span class="tag">Docker Compose</span></div>
+
+  <div class="foot"><span>엄주호 · Portfolio</span><span>06</span></div>
+</section>
+
+<!-- 7. ChatFlow -->
+<section class="page">
+  <p class="eyebrow">Featured Project · 04</p>
+  <h2>ChatFlow</h2>
+  <p class="lead">인증과 실시간 통신을 각각 성격에 맞는 언어로 분리한 실시간 채팅 서비스</p>
+  <p class="meta" style="margin-top:1.5mm">개인 프로젝트 · 1인 · Spring Boot 인증 서버 + Go 채팅 서버 · <a href="https://github.com/UHO99/ChatFlow">github.com/UHO99/ChatFlow</a></p>
+
+  <div class="row sec" style="margin-top:6mm">
+    <div class="card soft">
+      <h3 style="margin-top:0">문제</h3>
+      <p>인증은 요청-응답 기반의 전형적인 CRUD·보안 처리이고, 채팅은 다수 클라이언트가 장시간 커넥션을 유지합니다. 성격이 다른 두 일을 한 서버에 두면 어느 한쪽의 강점을 살리기 어렵습니다.</p>
+    </div>
+    <div class="card soft">
+      <h3 style="margin-top:0">해결</h3>
+      <p>인증은 검증된 Spring Security로, 채팅은 커넥션당 자원이 적은 Go goroutine으로 나누고, 두 서버는 JWT 하나로 연동했습니다.</p>
+    </div>
+  </div>
+
+  <h3>요청 흐름</h3>
+  <div class="flow">
+    <div><b>회원가입·로그인</b>SpringAuth</div>
+    <div class="hot"><b>JWT 발급</b>Spring Security</div>
+    <div><b>Nginx</b>리버스 프록시</div>
+    <div class="hot"><b>JWT 검증</b>Go 미들웨어</div>
+    <div><b>Hub / Room</b>커넥션 관리</div>
+    <div><b>브로드캐스트</b>WebSocket</div>
+  </div>
+
+  <h3>구현 내용</h3>
+  <table>
+    <tr><th style="width:30mm">영역</th><th>내용</th></tr>
+    <tr><td><b>인증 서버</b></td><td>Spring Security 필터 체인과 UserDetailsService 구조로 회원가입·로그인·JWT 발급·토큰 블랙리스트 관리</td></tr>
+    <tr><td><b>채팅 서버</b></td><td>Gin + WebSocket으로 Hub/Room 구조를 만들고, goroutine과 channel로 별도 스레드풀 관리 없이 다수 커넥션의 브로드캐스트 처리</td></tr>
+    <tr><td><b>서버 간 연동</b></td><td>Spring(JJWT)이 발급한 토큰을 Go(golang-jwt) 미들웨어에서 검증. 두 라이브러리 간 JWT 파싱 포맷을 맞춰 호환 문제 해결</td></tr>
+    <tr><td><b>데이터</b></td><td>PostgreSQL 스키마와 마이그레이션, Go 쪽은 pgx로 쿼리</td></tr>
+    <tr><td><b>인프라</b></td><td>Postgres·SpringAuth·GoChat·Nginx를 Docker Compose로 한 번에 기동, 방 참가 플로우와 테스트용 프론트 작성</td></tr>
+  </table>
+
+  <h3>배운 것</h3>
+  <div class="row">
+    <div class="card soft"><b>도구는 일의 성격으로 고른다</b><br>요청-응답과 장시간 커넥션은 필요한 강점이 다릅니다.</div>
+    <div class="card soft"><b>경계는 토큰 하나로</b><br>인증 책임을 한곳에 두고, 다른 서버는 검증만 하게 했습니다.</div>
+  </div>
+
+  <h3>Tech</h3>
+  <div class="tags"><span class="tag">Java 21</span><span class="tag">Spring Boot 4.1</span><span class="tag">Spring Security</span><span class="tag">JJWT</span><span class="tag">Go 1.25</span><span class="tag">Gin</span><span class="tag">WebSocket</span><span class="tag">golang-jwt</span><span class="tag">pgx</span><span class="tag">PostgreSQL</span><span class="tag">Nginx</span><span class="tag">Docker Compose</span></div>
+
+  <div class="foot"><span>엄주호 · Portfolio</span><span>07</span></div>
+</section>
+
+<!-- 8. Study Room Mate -->
+<section class="page">
+  <p class="eyebrow">Featured Project · 05</p>
+  <h2>Study Room Mate</h2>
+  <p class="lead">스터디룸·공간 예약부터 결제까지 처리하는 예약 통합 관리 시스템</p>
+  <p class="meta" style="margin-top:1.5mm">LG U+ 유레카 조별 프로젝트 · 3인 팀 · 예약·결제 도메인 (저장소 최다 커밋) · <a href="https://github.com/rmsckd1640/study-room-mate">github.com/rmsckd1640/study-room-mate</a></p>
+
+  <div class="row sec" style="margin-top:6mm">
+    <div class="card soft">
+      <h3 style="margin-top:0">문제</h3>
+      <p>같은 방·같은 시간에 예약이 동시에 들어오면 중복 예약이 생길 수 있고, 결제를 시작만 하고 끝내지 않은 예약은 자리를 영구히 점유합니다.</p>
+    </div>
+    <div class="card soft">
+      <h3 style="margin-top:0">해결</h3>
+      <p>예약 시 방을 비관적 쓰기 락으로 잡아 동시 예약을 막고, 결제 상태에 따라 예약 상태를 전환하며, 미완료 예약은 스케줄러가 주기적으로 취소합니다.</p>
+    </div>
+  </div>
+
+  <h3>예약 · 결제 흐름</h3>
+  <div class="flow">
+    <div><b>방 조회</b>목록·현황</div>
+    <div class="hot"><b>예약</b>PESSIMISTIC_WRITE</div>
+    <div><b>PENDING</b>결제 대기</div>
+    <div class="hot"><b>Toss 결제</b>Server-to-Server 승인</div>
+    <div><b>확정</b>상태 전환</div>
+    <div class="hot"><b>스케줄러</b>10분마다 정리</div>
+  </div>
+
+  <h3>담당 업무</h3>
+  <table>
+    <tr><th style="width:30mm">영역</th><th>내용</th></tr>
+    <tr><td><b>예약 동시성</b></td><td>예약 시 Room을 findByIdForUpdate(PESSIMISTIC_WRITE)로 조회해 동시 요청의 중복 예약 차단, 예약 상태 전환 메서드 설계</td></tr>
+    <tr><td><b>결제 연동</b></td><td>Toss Payments 위젯 연동과 서버 간 결제 승인, 승인 중 발생 가능한 오류와 successUrl 미전송 처리, 결제에 따른 예약 상태 전환</td></tr>
+    <tr><td><b>점유 해제</b></td><td>PENDING·READY 상태로 남아 자리를 영구 점유하는 예약을 스케줄러가 10분마다 CANCELED로 변경</td></tr>
+    <tr><td><b>구조 개선</b></td><td>WebFlux 의존을 RestClient로 교체, 서비스 레이어의 try-catch를 걷어내고 GlobalExceptionHandler로 오류 처리 일원화, 예약·결제 레이어 리팩토링</td></tr>
+    <tr><td><b>테스트</b></td><td>Repository JUnit 단위 테스트, 관리자 방 생성 → 회원 로그인 → 방 조회 → 예약 시나리오 MVC 테스트, JaCoCo 커버리지</td></tr>
+    <tr><td><b>프론트·배포</b></td><td>React + Vite 프론트 초기 구조, GitHub Pages 배포 워크플로</td></tr>
+  </table>
+
+  <h3>배운 것</h3>
+  <div class="row">
+    <div class="card soft"><b>락의 대상은 경합하는 자원</b><br>예약 레코드가 아니라 방을 잠가야 중복이 막힙니다.</div>
+    <div class="card soft"><b>미완료 상태도 설계 대상</b><br>결제를 멈춘 사용자의 예약을 누가 언제 풀지까지 정해야 합니다.</div>
+  </div>
+
+  <h3>Tech</h3>
+  <div class="tags"><span class="tag">Java 21</span><span class="tag">Spring Boot 4.1</span><span class="tag">Spring Data JPA</span><span class="tag">Spring Security · JWT</span><span class="tag">MySQL</span><span class="tag">Toss Payments</span><span class="tag">RestClient</span><span class="tag">JUnit · JaCoCo</span><span class="tag">React · Vite</span><span class="tag">GitHub Pages</span></div>
+
+  <div class="foot"><span>엄주호 · Portfolio</span><span>08</span></div>
+</section>
+
+<!-- 9. 기타 + 자격 + 연락처 -->
+<section class="page">
+  <p class="eyebrow">Other Project</p>
+  <h2>よちよち (YochiYochi)</h2>
+  <p class="lead">일본 영유아가 재미있게 글을 학습할 수 있도록 만든 학습 사이트</p>
+  <p class="meta" style="margin-top:1.5mm">영진전문대 졸업 프로젝트 · 프론트엔드 담당 · github.com/YunYeongUn/YochiYochiServer</p>
+  <div class="card soft" style="margin-top:5mm">"よちよち"는 한국어로 "아장아장"이라는 뜻입니다. 백엔드는 Laravel, 프론트는 Vue.js로 제작했고 그중 프론트를 담당했습니다.</div>
+  <div class="tags" style="margin-top:3mm"><span class="tag">Vue.js</span><span class="tag">Laravel</span></div>
+
+  <div class="row sec" style="margin-top:12mm">
+    <div class="card">
+      <p class="eyebrow" style="margin-bottom:1.5mm">Certification</p>
+      <b>JLPT N1</b> <span class="meta">153점 · 2023.12</span>
+    </div>
+    <div class="card">
+      <p class="eyebrow" style="margin-bottom:1.5mm">Contact</p>
+      <div class="kv" style="grid-template-columns:16mm 1fr; row-gap:.5mm; font-size:9pt">
+        <b>Email</b><span>uh787355@gmail.com</span>
+        <b>Phone</b><span>010-9984-3865</span>
+        <b>GitHub</b><span>github.com/UHO99</span>
+        <b>Blog</b><span>umjuho9984.tistory.com</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><span>엄주호 · Portfolio</span><span>09</span></div>
+</section>
+
+</body>
+</html>
